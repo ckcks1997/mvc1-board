@@ -30,7 +30,7 @@ int num = bd.insertBoard(board);
 String msg="게시물 등록 실패";
 String url = "writeForm.jsp";
 if(num==1){
-  msg = "게시물 등록 성공" ;
+  msg = "등록되었습니다." ;
   url = "list.jsp";
 }
 

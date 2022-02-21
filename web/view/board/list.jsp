@@ -17,6 +17,7 @@
 <body>
 <%
     String boardid =request.getParameter("boardid");
+    if(boardid == null) boardid = "1";
     int pageInt = 1;
     int limit = 10;
     try {
@@ -41,7 +42,7 @@
 
 
 <div class="container">
-    <h2 id="center">게시판 리스트</h2>
+    <h2 id="center">공지사항</h2>
     <p align="right">
         <%if (boardcount > 0) { %>
         전체 글: <%=boardcount %>
@@ -50,7 +51,7 @@
         <%} %>
     </p>
 
-    <table class="table table-hover border">
+    <table class="table table-hover border" style="cursor:pointer">
         <thead>
         <tr class="table-light">
             <th>번호</th>
@@ -75,6 +76,9 @@
             <td><%=i.getReadcnt() %></td>
         </tr>
         <%} %>
+        <%if (boardcount == 0) { %>
+            <td class="text-center" colspan="6">등록된 글이 없습니다.</td>
+        <%}%>
         </tbody>
     </table>
     <div class=" text-end">

@@ -16,6 +16,7 @@
         }
 
         a {
+            text-decoration: none;
             color: #000;
         }
 
@@ -30,4 +31,28 @@
         footer > div {
             margin: auto;
         }
+        .nav-name  {
+        display: inline-block;
+            cursor:pointer;
+        }
+
+        .nav-name > h1 {
+            display: inline;
+            color:#ddd;
+            cursor:pointer;
+            color:#555;
+        }
+        .navbar-brand{
+            display: none;
+        }
+ 
+        @media(max-width:767px){
+        .nav-name{
+            display: none;
+        }
+        .navbar-brand{
+            display: block;
+        }
+    }
+        
     </style>

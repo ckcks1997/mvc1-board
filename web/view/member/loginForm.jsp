@@ -7,7 +7,7 @@
 <br>
 <div class="container-md" id="login">
     <h3 class="text-center">로 그 인</h3>
-    <form class="mx-md-5 p-5 border border-3 rounded bg-light" form action="<%=request.getContextPath()%>/view/member/loginPro.jsp" method="post">
+    <form class="mx-md-5 p-5 border border-1 rounded bg-light" form action="<%=request.getContextPath()%>/view/member/loginPro.jsp" method="post">
         <div class="px-md-5">
             <div class="form-group row m-3">
                 <div class="col-3 text-center my-auto">

@@ -80,10 +80,10 @@
 
 <!-- 회원가입 -->
 <br />
-<div class="container-md text-center" id="register">
+<div class="container-md text-center " id="register">
     <h3>회원가입</h3>
     <br />
-    <form class="mx-md-5 p-5 border border-3 rounded bg-light"
+    <form class="mx-md-5 p-5 border border-1 rounded  bg-light"
           method="post"
           name="f"
           action="<%=request.getContextPath()%>/view/member/memberRegisterPro.jsp"

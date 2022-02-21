@@ -22,7 +22,7 @@
 <div class="container-md text-center" id="register">
     <h3>정보수정</h3>
     <br/>
-    <form class="mx-md-5 p-5 border border-3 rounded bg-light" method="post"
+    <form class="mx-md-5 p-5 border border-1 rounded bg-light" method="post"
           action="<%=request.getContextPath()%>/view/member/memberUpdatePro.jsp" name="f">
         <input type="hidden" name="picture" value="<%=mem.getPicture()%>">
         <div class="row row-cols-3">
@@ -30,7 +30,7 @@
                 <div class="col img">
                     <img width="150" height="200" src="<%=request.getContextPath()%>/upload/<%=mem.getPicture() %>" alt="" id="pict"/>
                     <br/>
-                    <button type="button" class="btn btn-dark"  onclick="win_upload()">사진등록</button>
+                    <button type="button" class="btn btn-dark mt-3"  onclick="win_upload()">사진등록</button>
                 </div>
             </div>
             <div class="container form-group col-9">
