@@ -1,0 +1,33 @@
+ <style>
+
+        .green-table {
+            background-color: rgb(92, 194, 168);
+            color: #fff;
+        }
+
+        .footer {
+            background-color: #ddd;
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+            text-decoration: underline;
+        }
+
+        a {
+            color: #000;
+        }
+
+        footer {
+            display: flex;
+            height: 100px;
+            background: #ddd;
+            margin: auto;
+
+        }
+
+        footer > div {
+            margin: auto;
+        }
+    </style>
