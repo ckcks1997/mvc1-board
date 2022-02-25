@@ -26,7 +26,6 @@
     }
 %>
 
-<%=mem%>
 <br>
 <script>
     alert("<%=msg%>");

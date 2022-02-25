@@ -16,20 +16,20 @@ public class BoardDao {
 
         Connection con = JdbcConnection.getConnection();
         PreparedStatement pstmt = null;
-        String sql = "insert into board values(boardseq.nextval,?,?,?,?,?,?,sysdate, ?,0,?,?,?)";
+        String sql = "insert into board values(?,?,?,?,?,?,?,sysdate, ?,0,?,?,?)";
         try {
             pstmt = con.prepareStatement(sql);
-
-            pstmt.setString(1, board.getWriter());
-            pstmt.setString(2, board.getPass());
-            pstmt.setString(3, board.getSubject());
-            pstmt.setString(4, board.getContent());
-            pstmt.setString(5, board.getFile1());
-            pstmt.setString(6, board.getBoardid());
-            pstmt.setString(7, board.getIp());
-            pstmt.setInt(8, board.getRef());
-            pstmt.setInt(9, board.getReflevel());
-            pstmt.setInt(10, board.getRefstep());
+            pstmt.setInt(1, board.getNum());
+            pstmt.setString(2, board.getWriter());
+            pstmt.setString(3, board.getPass());
+            pstmt.setString(4, board.getSubject());
+            pstmt.setString(5, board.getContent());
+            pstmt.setString(6, board.getFile1());
+            pstmt.setString(7, board.getBoardid());
+            pstmt.setString(8, board.getIp());
+            pstmt.setInt(9, board.getRef());
+            pstmt.setInt(10, board.getReflevel());
+            pstmt.setInt(11, board.getRefstep());
 
             return pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -41,7 +41,44 @@ public class BoardDao {
 
         return 0;
     }
+    public int nextNum() {
+        Connection con = JdbcConnection.getConnection();
+        PreparedStatement pstmt = null;
+        String sql = "select boardseq.nextval from dual";
+        ResultSet rs = null;
+        try {
+            pstmt = con.prepareStatement(sql);
 
+            rs=pstmt.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcConnection.close(con, pstmt, rs);
+        }
+        return 0;
+    }
+    public void refStepAdd(int ref, int refstep) {
+        Connection con = JdbcConnection.getConnection();
+        PreparedStatement pstmt = null;
+        String sql = "update board set refstep=refstep+1 "
+                + " where ref = ? and refstep > ?";
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, ref);
+            pstmt.setInt(2, refstep);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcConnection.close(con, pstmt, null);
+        }
+
+    }
     public int boardCount(String boardid) {
         Connection con = JdbcConnection.getConnection();
         PreparedStatement pstmt = null;
@@ -67,7 +104,7 @@ public class BoardDao {
         String sql = "select * from ("
                 + "  select rownum rnum,  a.* from ( " +
                 "select * from board  where boardid = ?"
-                + " order by num desc ) a)" +
+                + " order by ref desc, refstep asc  ) a)" +
                 " where rnum between ? and ?";
         ResultSet rs = null;
         List<Board> li = new ArrayList<Board>();
@@ -139,9 +176,68 @@ public class BoardDao {
         } finally {
             JdbcConnection.close(con, pstmt, rs);
         }
-
-
         return null;
+    }
+
+    public int boardUpdate(Board board) {
+        Connection con = JdbcConnection.getConnection();
+        PreparedStatement pstmt = null;
+        String sql = "update board set subject=?, content=?, file1=?"
+                + " where num = ?";
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, board.getSubject());
+            pstmt.setString(2, board.getContent());
+            pstmt.setString(3, board.getFile1());
+            pstmt.setInt(4, board.getNum());
+            return pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcConnection.close(con, pstmt, null);
+        }
+
+        return 0;
+    }
+
+    public void readCountUp(int num) { //board num이 들어오면 readcnt++
+        Connection con = JdbcConnection.getConnection();
+        PreparedStatement pstmt = null;
+        String sql = "update board set readcnt = readcnt+1"
+                + " where num = ?";
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, num);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcConnection.close(con, pstmt, null);
+        }
+    }
+
+
+    public int deleteBoard(int num) {
+        Connection con = JdbcConnection.getConnection();
+        PreparedStatement pstmt = null;
+        String sql = "delete board "
+                + " where num = ?";
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, num);
+            return pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcConnection.close(con, pstmt, null);
+        }
+        return 0;
     }
 
 }

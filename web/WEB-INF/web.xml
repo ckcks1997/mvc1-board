@@ -12,8 +12,19 @@
     <!--    헤드 자동으로 붙임    -->
     <jsp-config>
         <jsp-property-group>
-            <url-pattern>/view/*</url-pattern>
+            <url-pattern>/view/board/*</url-pattern>
+            <url-pattern>/view/member/*</url-pattern>
             <include-prelude>/common/head.jsp</include-prelude>
+            <include-prelude>/common/nav.jsp</include-prelude>
+            <include-prelude>/common/space.jsp</include-prelude>
+            <include-coda>/common/space.jsp</include-coda>
+            <include-coda>/common/footer.jsp</include-coda>
+        </jsp-property-group>
+
+        <jsp-property-group>
+            <url-pattern>/view/main.jsp</url-pattern>
+            <include-prelude>/common/head.jsp</include-prelude>
+            <include-prelude>/common/nav.jsp</include-prelude>
             <include-coda>/common/footer.jsp</include-coda>
         </jsp-property-group>
     </jsp-config>

@@ -27,7 +27,6 @@
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">로그인</button>
-                <button type="submit" class="btn btn-secondary">회원가입</button>
             </div>
         </div>
     </form>

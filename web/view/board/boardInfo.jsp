@@ -6,6 +6,12 @@
   int boardnum = Integer.parseInt(request.getParameter("num"));
 BoardDao bd = new BoardDao();
 Board b = bd.boardOne(boardnum);
+	bd.readCountUp(boardnum);
+
+	String id = "";
+	if(session.getAttribute("memberID") != null){
+		id=(String)session.getAttribute("memberID");
+	}
 %>
 <html>
 <head>
@@ -27,15 +33,23 @@ Board b = bd.boardOne(boardnum);
             <tr><td>제목:</td><td><%=b.getSubject()%></td></tr>
             <tr height="250px"><td>내용:</td> <td><%=b.getContent()%></td></tr>
             <tr><td>파일:</td>
-                <td> <% if(b.getFile1() != null){%><img style=" max-width: 300px; max-height: 300px; " src="<%=request.getContextPath()%>/boardupload/<%=b.getFile1()%>"><%}%></td>
+                <td>
+					<% if(b.getFile1() != null  ){%>
+					<img style=" max-width: 300px; max-height: 300px; " src="<%=request.getContextPath()%>/boardupload/<%=b.getFile1()%>">
+					<%}else{%>
+					파일이 없습니다.
+					<%}%>
+				</td>
             </tr>
 			</tbody>
 		</table>
 		<div style="padding:3px; text-align: center;">
-			<button class="btn btn-primary" onclick="location.href=''">답변</button>
+			<button class="btn btn-primary" onclick="location.href='boardReplyForm.jsp?num=<%=b.getNum()%>'">답변</button>
 
-			<button class="btn btn-primary" onclick="location.href='boardUpdateForm.jsp?num=<%=b.getNum()%>'">수정</button>
-			<button class="btn btn-secondary"  onclick="history.back()">목록</button>
+			<% if(id.equals(b.getWriter()) ) {%>
+			<button class="btn btn-primary"  onclick="location.href='boardUpdateForm.jsp?num=<%=b.getNum()%>' " >수정</button>
+			<%}%>
+			<button class="btn btn-secondary"  onclick="location.href='list.jsp'">목록</button>
 		</div>
 	</div>
 	<br><br>
