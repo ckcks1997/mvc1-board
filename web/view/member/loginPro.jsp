@@ -17,7 +17,7 @@
     if (mem != null) {
         if (pass.equals(mem.getPass())) {
             session.setAttribute("memberID", mem.getId());
-            msg = mem.getName() + "님이 로그인";
+            msg = null;
             url = request.getContextPath() + "/view/main.jsp";
         }else {
             System.out.println(mem);
@@ -28,7 +28,9 @@
 
 <br>
 <script>
+    <% if(msg!=null){ %>
     alert("<%=msg%>");
+    <%}%>
     location.href="<%=url%>";
 </script>
 

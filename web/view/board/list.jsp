@@ -7,10 +7,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>리스트</title>
     <style>
         a {
             text-decoration: none;
+        }
+
+        td{
+            color: #393a44;
         }
         @media (max-width: 767px) {
             .hide {

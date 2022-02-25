@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
             <label>파일저장:</label>
-             <% if(board.getFile1() != null){%><img id = "img" style=" max-width: 300px; max-height: 300px; " src="<%=request.getContextPath()%>/boardupload/<%=board.getFile1()%>"><%}%>
+             <% if(board.getFile1() != null){%><img class="m-3" id = "img" style=" max-width: 300px; max-height: 300px; " src="<%=request.getContextPath()%>/boardupload/<%=board.getFile1()%>"><%}%>
             <input type="hidden" name="originalFile" value="<%=request.getContextPath()%>/boardupload/<%=board.getFile1()%>">
             <input class="form-control" type="file" name="file1" >
 

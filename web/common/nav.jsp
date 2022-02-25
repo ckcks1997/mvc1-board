@@ -9,6 +9,12 @@
     .navbar-brand:hover{
         color: black;
     }
+    .memid{
+        color: #557755;
+    }
+    .hover:hover{
+        color: #2bc2c7;
+    }
 </style>
 
 <div class="shadow-sm ps-3 bg-body rounded ">
@@ -31,35 +37,36 @@
                     if (memid == null) {
                 %>
                 <li class="nav-item ">
-                    <a class="nav-link" aria-current="page"href="<%=request.getContextPath()%>/view/member/memberRegister.jsp">회원가입</a>
+                    <a class="nav-link" aria-current="page"href="<%=request.getContextPath()%>/view/member/memberRegister.jsp"><span class="hover"> <i class="fa-solid fa-door-open"></i> 회원가입</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/view/member/loginForm.jsp">로그인</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/view/member/loginForm.jsp"><span class="hover"><i class="fa-solid fa-arrow-right-to-bracket"></i> 로그인</span></a>
                 </li>
                 <%
                 } else {
                 %>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/view/member/memberUpdate.jsp"><%=memid%>님:회원정보 수정</a>
+                    <a class="nav-link" aria-current="page" href="<%=request.getContextPath()%>/view/member/memberUpdate.jsp"><span class="hover"><i class="fa-solid fa-info"></i> <span class="memid"> <%=memid%></span>님: 회원정보 수정</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/view/member/logout.jsp">로그아웃</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/view/member/logout.jsp"><span class="hover"><i class="fa-solid fa-arrow-right-from-bracket"></i> 로그아웃</span></a>
                 </li>
                 <%
                     }
                 %>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/view/board/list.jsp?boardid=1">공지사항</a>
+                    <a class="nav-link mask" href="<%=request.getContextPath()%>/view/board/list.jsp?boardid=1"><span class="hover"><i class="fa-solid fa-clipboard"></i> 공지사항</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/view/board/list.jsp?boardid=2">자유게시판</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/view/board/list.jsp?boardid=2"><span class="hover"><i class="fa-solid fa-bars"></i> 자유게시판</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/view/board/list.jsp?boardid=3">QnA</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/view/board/list.jsp?boardid=3"><span class="hover"><i class="fa-solid fa-comments"></i> QnA</span></a>
                 </li>
                 <% if(memid != null && memid.equals("admin")){%>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/view/member/memberList.jsp">회원리스트</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/view/member/memberList.jsp"><span class="hover">회원리스트</span></a>
                 </li>
                 <%}%>
             </ul>
